@@ -10,6 +10,7 @@ namespace minimal_api.API.Domain.Entities
         public int Id { get; set; } = default!;
         [Required]
         [StringLength(255)]
+        [EmailAddress]
         public string Email { get; set; } = default!;
         [Required]
         [StringLength(50)]

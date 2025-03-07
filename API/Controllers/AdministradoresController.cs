@@ -31,6 +31,12 @@ namespace minimal_api.API.Controllers
             if (string.IsNullOrEmpty(administradorDTO.Password)) validacao.Menssagens.Add("Senha não pode ser vazia!");
             if (administradorDTO.Profile == null) validacao.Menssagens.Add("Perfil não pode ser vazio!");
 
+            var user = _administradorService.Get(1).FirstOrDefault(x => x.Email == administradorDTO.Email);
+            if (user != null) validacao.Menssagens.Add("Email já cadastrado!");
+
+            if (validacao.Menssagens.Count > 0)
+                return BadRequest(validacao);
+
             var adm = new Administrador
             {
                 Email = administradorDTO.Email,

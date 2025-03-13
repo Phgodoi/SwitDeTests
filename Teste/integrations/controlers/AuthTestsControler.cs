@@ -2,12 +2,10 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using minimal_api;
 using minimal_api.API.Domain.DTOs;
-using minimal_api.API.Domain.Enuns;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
 

@@ -23,6 +23,7 @@ namespace minimal_api.API.Controllers
         [HttpPost]
         [Authorize(Roles = "Adm")]
         [Tags("Administradores")]
+        [Route("CriarAdministrador")]
         public IActionResult CriarAdministrador([FromBody] AdministradorDTO administradorDTO)
         {
             var validacao = new ErrosDeValidacao { Menssagens = new List<string>() };
@@ -59,6 +60,8 @@ namespace minimal_api.API.Controllers
         [HttpGet]
         [Authorize(Roles = "Adm")]
         [Tags("Administradores")]
+        [Route("GetAdministradores")]
+
         public IActionResult GetAdministradores([FromQuery] int? pagina)
         {
             var adms = _administradorService.Get(pagina).Select(x => new
@@ -71,9 +74,10 @@ namespace minimal_api.API.Controllers
             return Ok(adms);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [Authorize(Roles = "Adm")]
         [Tags("Administradores")]
+        [Route("GetAdministradores{id}")]
         public IActionResult GetAdministradorPorId([FromQuery] int? pagina, int id)
         {
             var admById = _administradorService.Get(pagina).Where(x => x.Id == id).Select(x => new

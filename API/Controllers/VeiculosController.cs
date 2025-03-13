@@ -32,6 +32,7 @@ namespace minimal_api.API.Controllers
         [HttpPost]
         [Authorize(Roles = "Adm, Editor")]
         [Tags("Veiculos")]
+        [Route("CriarVeiculo")]
         public IActionResult CriarVeiculo([FromBody] VeiculoDTO veiculoDTO)
         {
             var validacao = Validar(veiculoDTO);
@@ -52,15 +53,17 @@ namespace minimal_api.API.Controllers
         [HttpGet]
         [Authorize(Roles = "Adm, Editor")]
         [Tags("Veiculos")]
+        [Route("GetVeiculos")]
         public IActionResult GetVeiculos([FromQuery] int? pagina)
         {
             var veiculos = _veiculoService.GetBy(pagina);
             return Ok(veiculos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [Authorize(Roles = "Adm, Editor")]
         [Tags("Veiculos")]
+        [Route("GetVeiculoPorId{id}")]
         public IActionResult GetVeiculoPorId(int id)
         {
             var veiculo = _veiculoService.GetById(id);
@@ -69,9 +72,10 @@ namespace minimal_api.API.Controllers
             return Ok(veiculo);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         [Authorize(Roles = "Adm")]
         [Tags("Veiculos")]
+        [Route("AtualizarVeiculo{id}")]
         public IActionResult AtualizarVeiculo(int id, [FromBody] VeiculoDTO veiculoDTO)
         {
             var veiculo = _veiculoService.GetById(id);
@@ -89,9 +93,10 @@ namespace minimal_api.API.Controllers
             return Ok(veiculo);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Authorize(Roles = "Adm")]
         [Tags("Veiculos")]
+        [Route("DeletarVeiculo{id}")]
         public IActionResult DeletarVeiculo(int id)
         {
             var veiculo = _veiculoService.GetById(id);
